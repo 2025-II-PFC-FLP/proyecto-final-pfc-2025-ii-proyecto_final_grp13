@@ -107,4 +107,27 @@ object Riego {
       else p * (finish - ts)
     }.sum
   }
+
+  def costoMovilidadPar(f: Finca, pi: ProgRiego, d: Distancia): Int = {
+    if (pi.length <= 1) 0
+    else pi.sliding(2).toVector.par.map { case Vector(a, b) => d(a)(b) }.sum
+  }
+
+  def generarProgramacionesRiegoPar(f: Finca): Vector[ProgRiego] = {
+    val n = f.length
+    Vector.range(0, n).permutations.toVector.par.map(_.toVector).toVector
+  }
+
+  def ProgramacionRiegoOptimoPar(f: Finca, d: Distancia): (ProgRiego, Int) = {
+    val programas = generarProgramacionesRiegoPar(f)
+    programas
+      .par
+      .map { pi =>
+        val cr = costoRiegoFincaPar(f, pi)
+        val cm = costoMovilidadPar(f, pi, d)
+        val total = cr + cm
+        (pi, total)
+      }
+      .minBy(_._2)
+  }
 }
