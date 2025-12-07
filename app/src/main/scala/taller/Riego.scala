@@ -2,6 +2,7 @@ package taller
 
 import scala.annotation.tailrec
 import scala.util.Random
+import scala.collection.parallel.CollectionConverters._
 object Riego {
 
   // Tipos de datos
