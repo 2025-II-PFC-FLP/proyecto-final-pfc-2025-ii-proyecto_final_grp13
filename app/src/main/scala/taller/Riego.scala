@@ -73,4 +73,37 @@ object Riego {
     else pi.sliding(2).map { case Vector(a, b) => d(a)(b) }.sum
   }
 
+  // 2.5 Generando programaciones de riego
+  def generarProgramacionesRiego(f: Finca): Vector[ProgRiego] = {
+    val n = f.length
+    Vector.range(0, n).permutations.map(_.toVector).toVector
+  }
+
+  // 2.6 Programación de riego óptima (secuencial)
+  def ProgramacionRiegoOptimo(f: Finca, d: Distancia): (ProgRiego, Int) = {
+    val programas = generarProgramacionesRiego(f)
+    programas
+      .map { pi =>
+        val cr = costoRiegoFinca(f, pi)
+        val cm = costoMovilidad(f, pi, d)
+        val total = cr + cm
+        (pi, total)
+      }
+      .minBy(_._2)
+  }
+
+  // 3.1/3.2/3.3 Versiones paralelas
+
+  def costoRiegoFincaPar(f: Finca, pi: ProgRiego): Int = {
+    val t = tIR(f, pi)
+    f.indices.par.map { i =>
+      val ts = tsup(f, i)
+      val tr = treg(f, i)
+      val p  = prio(f, i)
+      val start = t(i)
+      val finish = start + tr
+      if (ts - tr >= start) math.max(0, ts - finish)
+      else p * (finish - ts)
+    }.sum
+  }
 }
