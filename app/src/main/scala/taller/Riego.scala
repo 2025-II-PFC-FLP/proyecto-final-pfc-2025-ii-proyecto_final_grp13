@@ -48,5 +48,29 @@ object Riego {
     }
     loop(pi.toList, 0, Vector.fill(n)(0))
   }
+  // 2.4 Calculando costos
+  def costoRiegoTablon(i: Int, f: Finca, pi: ProgRiego): Int = {
+    val t = tIR(f, pi)
+    val ts = tsup(f, i)
+    val tr = treg(f, i)
+    val p  = prio(f, i)
+    val start = t(i)
+    val finish = start + tr
+    if (ts - tr >= start) {
+      // dentro del margen de supervivencia
+      math.max(0, ts - finish)
+    } else {
+      // fuera de margen: penaliza por prioridad
+      p * (finish - ts)
+    }
+  }
+
+  def costoRiegoFinca(f: Finca, pi: ProgRiego): Int =
+    f.indices.map(i => costoRiegoTablon(i, f, pi)).sum
+
+  def costoMovilidad(f: Finca, pi: ProgRiego, d: Distancia): Int = {
+    if (pi.length <= 1) 0
+    else pi.sliding(2).map { case Vector(a, b) => d(a)(b) }.sum
+  }
 
 }
