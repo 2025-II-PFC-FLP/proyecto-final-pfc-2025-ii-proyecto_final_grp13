@@ -8,11 +8,13 @@
 
 ## 👥 Integrantes del Grupo
 
-| Nombre Completo      | Código  | Rol   | Correo Electrónico        |
-|----------------------|---------|-------| ------------------------- |
-| Karen Vanessa Gómez  | 2459501 | Líder | karen.vanessa.gomez@correounivalle.edu.co |
-| Brayan Fidel Carmona | 2459407 | Líder | brayan.urquijo@correounivalle.edu.co |
-| Juan Stevan Cruz     | 2459437 | Lider | juan.stevan.cruz@correounivalle.edu.co |
+| Nombre Completo         | Código    | Rol    | Correo Electrónico                         |
+|-------------------------|-----------|--------|--------------------------------------------|
+| Karen Vanessa Gómez     | 2459501   | Líder  | karen.vanessa.gomez@correounivalle.edu.co  |
+| Brayan Fidel Carmona    | 2459407   | Líder  | brayan.urquijo@correounivalle.edu.co       |
+| Juan Stevan Cruz        | 2459437   | Líder  | juan.stevan.cruz@correounivalle.edu.co     |
+| Samuel Ocampo Villegas  | 2459503   | Líder  | ocampo.samuel@correounivalle.edu.co        |
+
 
 
 ---
