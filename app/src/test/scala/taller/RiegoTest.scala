@@ -80,4 +80,22 @@ class RiegoTest extends AnyFunSuite {
     assert(total2 === 41)
     assert(total1 < total2)
   }
+  test("ProgramacionRiegoOptimo devuelve costo <= 38 para F1") {
+    val (_, cost) = ProgramacionRiegoOptimo(F1, DF1)
+    assert(cost <= 38)
+  }
+
+  test("ProgramacionRiegoOptimoPar coincide en costo con la secuencial") {
+    val (_, costSeq) = ProgramacionRiegoOptimo(F1, DF1)
+    val (_, costPar) = ProgramacionRiegoOptimoPar(F1, DF1)
+    assert(costSeq === costPar)
+  }
+
+  test("Caso trivial: un solo tablón sin movilidad") {
+    val f = Vector((5, 2, 3))
+    val d = Vector(Vector(0))
+    val (pi, costo) = ProgramacionRiegoOptimo(f, d)
+    assert(pi === Vector(0))
+    assert(costo === costoRiegoFinca(f, pi))
+  }
 }
